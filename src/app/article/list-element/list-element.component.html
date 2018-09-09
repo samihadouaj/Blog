@@ -1,0 +1,16 @@
+
+
+        <a  class="list-group-item list-group-item-action flex-column align-items-start ">
+            <img [src]="owner.image" class="rounded-circle" style="width: 40px">
+          {{p.owner.ownerName}}<br>
+          <small>{{p.date|date: 'medium'}}</small><br>
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1">{{p.title}}</h3>
+            <small *ngIf="liked == false ; else alreadyLiked"><button class="btn btn-outline-primary" (click)="like(p._id)" type="button" >{{p.likes}}</button></small>
+            <ng-template #alreadyLiked><button class="btn btn-outline-dark" (click)="dislike(p._id)" type="button">{{p.likes}}</button></ng-template>
+          </div>
+          <p class="mb-1">{{p.subject}}</p>
+          <br>
+          <small><a [routerLink]="['/article', p._id]" >Read more ...</a> </small>
+        </a>
+

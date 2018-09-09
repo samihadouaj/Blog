@@ -1,0 +1,51 @@
+<body>
+
+<div class="container-fluid">
+      <div class="row">
+      
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h2 class="panel-title">{{user.name|uppercase}}</h2>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 col-lg-6 " align="center"> <img alt="User Pic" [src]="user.image" class=" rounded-circle"> </div>
+                
+                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  
+                </div>
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>name:</td>
+                        <td>{{user.name}}</td>
+                      </tr>
+                      <tr>
+                        <td>Hire date:</td>
+                        <td>{{user.inscriptionDate|date:'medium'}}</td>
+                      </tr>
+                         <tr>                      
+                      <tr>
+                        <td>Email</td>
+                        <td><a [href]="user.email">{{user.email}}</a></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  
+
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                          <button class="btn btn-primary" (click)="toSettings()"> Modify user profile</button>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</body>

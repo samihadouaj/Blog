@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1 class="display-5">{{post.title}}</h1>
+    <p class="lead">{{post.subject}}</p>
+    <hr>
+    <div class="lead"><a><img [src]="owner.image" class="rounded-circle" style="width: 40px">{{post.owner.ownerName}}</a></div>
+    <div > {{post.date|date:'medium'}}</div>
+  </div>
+
+  <div class="row">
+      <div class="col-8 offset-2">
+        <div class="card">
+          
+          <div class="card-body" *ngIf="post.type === 'Article'; else image">
+            {{post.content}}
+          </div>
+          <ng-template #image class="card-body">
+            <img [src]="post.content" style="border-radius: 5px">
+          </ng-template>
+        </div>
+      </div>
+  </div>
+  <br><br>
+  <hr>
+  <br><br>
+</div>
+
+<app-comment-list [postId]="postId" style="margin-top: 4px "></app-comment-list>
+  
+

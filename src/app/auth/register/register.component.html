@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+             <form class="form-group" (ngSubmit)="register(f.value)" #f="ngForm">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    ngModel
+                    name="name"
+                    id="name"
+                    class="form-control"
+                    required
+                    #name="ngModel"
+                >
+                <div *ngIf="name.touched && name.invalid" >
+                    <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                        we neek to know your name</small></div>
+
+                <label for="email">email</label>
+                <input
+                    type="email"
+                    ngModel
+                    name="email"
+                    id="email"
+                    class="form-control"
+                    required
+                    #email="ngModel"
+                >
+                <div *ngIf="email.touched && email.invalid" >
+                    <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                        please add your email</small></div>
+
+                <label for="password">password</label>
+                <input
+                    type="password"
+                    ngModel
+                    name="password"
+                    id="password"
+                    class="form-control"
+                    required
+                    #password= "ngModel"
+                >
+                <div *ngIf="password.touched && password.invalid" >
+                    <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                        please chose a password</small></div>
+                <label for="image">image</label>
+                <input
+                [disabled] = "checkboxValue"
+                    type="text"
+                    ngModel
+                    name="image"
+                    id="image"
+                    required
+                    class="form-control"
+                    #image="ngModel"
+                >
+
+                <div *ngIf="image.touched && image.invalid" >
+                    <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                        add the image link</small></div>
+
+                    <label>
+                        <input [(ngModel)]="checkboxValue" 
+                         type="checkbox"  
+                          id="myonoffswitch"
+                          [ngModelOptions]="{standalone: true}"
+                         >
+                            I don't want to add my picture now
+                    </label>
+
+                <div class="row">
+                        <div class="col-3 offset-4">
+                            <button class="btn btn-success" type="submit" style="margin-top:20px; width: 150px" [disabled]="!f.valid"> sign up</button>
+                        </div>
+                      </div>      
+                    
+             </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="alert alert-danger" role="alert" *ngIf="showError">
+                <strong>WARNING: </strong> {{errorMessage}}.
+              </div>
+        </div>
+    </div>
+   
+
+</div>
+

@@ -1,0 +1,17 @@
+
+        <a  class="list-group-item list-group-item-action flex-column align-items-start " style="margin-top: 6px">
+            <h4 class="mb-1">{{comment.content}}</h4>
+            <br><hr>
+            <div class="d-flex w-100 justify-content-between" >
+              <div><img [src]="writer.image" class="rounded-circle" style="width: 40px">
+                {{username}}<br>
+                  {{comment.date|date: 'medium'}}
+              </div>
+              <div *ngIf="showTrash === true">
+                <a style="font-size:24px; cursor: pointer" type="button" (click)="delete()">
+                <i class="fa fa-trash" ></i></a>
+            
+          </div>
+          </div>
+            <br>
+          </a>
