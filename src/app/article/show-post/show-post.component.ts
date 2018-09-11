@@ -2,7 +2,7 @@ import { TokenManager } from './../../tokenManager';
 import { ArticleService } from './../article.service';
 import { PostModel } from './../posts.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from '../../user/user.model';
 import { UserService } from '../../user/user.service';
 
@@ -18,7 +18,8 @@ postId: string;
 comments: any;
   constructor(private articleService: ArticleService,
   private route: ActivatedRoute,
-private userService: UserService
+private userService: UserService,
+private router: Router
 ) { }
 
   async ngOnInit() {
@@ -27,4 +28,16 @@ private userService: UserService
    this.owner = await this.userService.getUser(this.post.owner._id);
   }
 
+  detetePost(){
+      this.articleService.delete(this.post._id).subscribe((res) => {
+        console.log(res);
+        confirm('post succefully deleted');
+        this.router.navigate(['/home'])
+      })
+
+  }
+
+  toUpdatePost() {
+    this.router.navigate(['updatePost/', this.postId]);
+  }
 }

@@ -8,7 +8,7 @@
                   {{comment.date|date: 'medium'}}
               </div>
               <div *ngIf="showTrash === true">
-                <a style="font-size:24px; cursor: pointer" type="button" (click)="delete()">
+                <a style="font-size:24px; cursor: pointer" (click)="delete()">
                 <i class="fa fa-trash" ></i></a>
             
           </div>

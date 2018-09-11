@@ -1,9 +1,10 @@
+import { CanActivate } from '@angular/router';
 import { TokenManager } from './tokenManager';
 import { ArticleService } from './article/article.service';
 import { AuthService } from './auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -23,16 +24,21 @@ import { CommentShowComponent } from './article/comment-show/comment-show.compon
 import { CommentListComponent } from './article/comment-list/comment-list.component';
 import { UserComponent } from './user/user/user.component';
 import { SettingsComponent } from './user/settings/settings.component';
+import { AuthGuardService } from './auth-guard.service';
+import { UpdatepostComponent } from './article/updatepost/updatepost.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home' , component: HomeComponent},
-  {path: 'writeArticle' , component: CreateArticleComponent},
+  {path: 'about' , component: AboutComponent},
+  {path: 'writeArticle' , component: CreateArticleComponent,canActivate:[AuthGuardService]},
   {path: 'article/:id' , component: ShowPostComponent},
-  {path: 'me' , component: UserComponent},
-  {path: 'settings' , component: SettingsComponent},
+  {path: 'me' , component: UserComponent ,canActivate:[AuthGuardService]},
+  {path: 'settings' , component: SettingsComponent ,canActivate:[AuthGuardService]},
+  {path: 'updatePost/:postId' , component: UpdatepostComponent ,canActivate:[AuthGuardService]},
  ];
 
 @NgModule({
@@ -49,7 +55,9 @@ const routes = [
     CommentShowComponent,
     CommentListComponent,
     UserComponent,
-    SettingsComponent
+    SettingsComponent,
+    UpdatepostComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,7 @@ const routes = [
     BrowserAnimationsModule,
     MatSelectModule
   ],
-  providers: [AuthService, ArticleService, TokenManager, UserService, CommentService],
+  providers: [AuthService, ArticleService, TokenManager, UserService, CommentService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

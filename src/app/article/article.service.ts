@@ -26,4 +26,11 @@ export class ArticleService {
     dislike(ids) {
         return this.httpClient.put('http://localhost:3000/api/users/dislike', ids, httpOptions);
     }
+    delete(postId) {
+        return this.httpClient.delete('http://localhost:3000/api/posts/' + postId, httpOptions);
+    }
+    updatePost(newPost, postId) {
+        return this.httpClient.put('http://localhost:3000/api/posts/' + postId, newPost, httpOptions);
+
+    }
     }

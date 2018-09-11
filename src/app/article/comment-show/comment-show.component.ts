@@ -17,9 +17,8 @@ writer: UserModel = {name: ' ',  email: ' ', password: ' ', image: '' };
   constructor(private userService: UserService, private commentService: CommentService) { }
 
   async ngOnInit() {
-this.showTrash =  await this.userService.showTrash(this.comment._id);
+this.showTrash =   this.userService.showTrash(this.comment._id);
 this.writer = await this.userService.getUser(this.comment.writerId);
-
 this.username = this.writer.name;
   }
 
@@ -34,7 +33,7 @@ this.username = this.writer.name;
 
   delete() {
       this.commentService.deleteComment(this.comment._id).subscribe((res) => {
-        console.log('commentDeleted');
+        console.log('comment Deleted');
           this.deleteEl(this.commentService.comments, this.comment._id);
       });
   }

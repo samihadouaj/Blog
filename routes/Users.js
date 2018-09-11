@@ -49,7 +49,7 @@ router.put('/dislike',auth, async (req, res) => {
 res.send('true')
 });
 
-router.put('/:id',[auth, existence], async (req, res) => {
+router.put('/:id',[auth, existence  ], async (req, res) => {
     const id = req.params.id;
     let password = ' '
     if(req.body.password) {

@@ -1,5 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import { Router } from '@angular/router';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -9,7 +10,7 @@ const httpOptions = {
 
 export class AuthService {
 token: string;
-    constructor(private httpCleint: HttpClient) {}
+    constructor(private httpCleint: HttpClient, private router: Router) {}
         login(user) {
            return this.httpCleint.post('http://localhost:3000/api/auth', user, httpOptions);
         }
@@ -24,6 +25,7 @@ token: string;
         logout() {
             localStorage.removeItem('token');
             localStorage.removeItem('currentUser');
+            this.router.navigate(['home'])
             location.reload();
         }
  }

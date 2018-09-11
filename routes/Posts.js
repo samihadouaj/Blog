@@ -57,7 +57,7 @@ router.delete('/:postId' ,[auth, postAdmin], async(req, res) => {
               }
       }
      await owner.save();
-      res.send('post deleted');
+      res.send(JSON.stringify('post deleted'));
 });
 
 router.get('/', async (req ,res) => {

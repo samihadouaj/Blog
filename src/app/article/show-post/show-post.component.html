@@ -5,6 +5,10 @@
     <hr>
     <div class="lead"><a><img [src]="owner.image" class="rounded-circle" style="width: 40px">{{post.owner.ownerName}}</a></div>
     <div > {{post.date|date:'medium'}}</div>
+    <div class="pull-right" *ngIf="userService.isItYourPost(post._id) == true ">
+      <button class=" btn btn-success" style="margin: 4px" (click)= "toUpdatePost()" >update post</button>
+      <button class=" btn btn-warning" style="margin: 4px" (click)="detetePost()">delete post</button>
+    </div>
   </div>
 
   <div class="row">

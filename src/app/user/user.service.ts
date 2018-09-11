@@ -20,9 +20,9 @@ export  class UserService {
             return this.httpClient.get<UserModel>('http://localhost:3000/api/users/' + userId).toPromise();
     }
 
-   async showTrash(commentId) {
+    showTrash(commentId) {
            if (! this.authService.isConnected()) {return false; }
-          const user = await this.getUser(this.tokenManager.getDecoded().id);
+          const user = JSON.parse(localStorage.getItem('currentUser'));
 
             for (const c of user.comments) {
                     if (c == commentId) {
@@ -35,6 +35,16 @@ export  class UserService {
         updateUser(newInfo, userId) {
                 return this.httpClient.put('http://localhost:3000/api/users/' + userId, newInfo, httpOptions );
 
+        }
+
+         isItYourPost(postId) {
+          const user = JSON.parse(localStorage.getItem('currentUser'));
+          for (const c of user.posts) {
+                if (c == postId) {
+                        return true;
+                }
+        }
+        return false;
         }
     }
 

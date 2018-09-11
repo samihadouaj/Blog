@@ -7,7 +7,7 @@ module.exports = async function(req, res, next) {
    const decoded = jwt.verify(token, config.get('jwtkey'));
    const postId = req.params.postId;
     const ownerId = decoded.id;
-    const owner =  User.findById({_id: ownerId});
+    const owner =  await User.findById({_id: ownerId});
     for(let p of owner.posts) {
         if(p == postId) {
             return next();
