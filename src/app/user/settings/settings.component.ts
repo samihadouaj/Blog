@@ -17,9 +17,9 @@ export class SettingsComponent implements OnInit {
   constructor(private userService: UserService,
     private tokenManager: TokenManager) { }
   async ngOnInit() {
-   this.user = await JSON.parse(localStorage.getItem('currentUser'));
-   console.log(this.user);
-      this.setting.form.patchValue({
+     this.user = await this.userService.getUser(this.tokenManager.getDecoded().id);
+      this.setting.form.patchValue
+      ({
             name: this.user.name,
             email: this.user.email,
             password: '',
