@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-6 offset-2">
+              <form class="form-group" (ngSubmit)="applyChanges(f.value)" #f="ngForm">
+              <label for="title">title</label>
+              <input
+                  type="text"
+                  ngModel
+                  name="title"
+                  id="title"
+                  class="form-control"
+                  required
+                  #title="ngModel"
+              >
+              <div *ngIf="title.touched && title.invalid" >
+                  <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                      title is required</small></div>
+
+                      
+              <label for="subject">subject</label>
+              <input
+                  type="subject"
+                  ngModel
+                  name="subject"
+                  id="subject"
+                  class="form-control"
+                  #subject="ngModel"
+                  required
+              >
+              <div *ngIf="subject.touched && subject.invalid" >
+                  <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                      subject is required</small></div>
+
+              <label for="type">type</label>
+
+              <select placeholder="post type" name="type" id="type" class="form-control" ngModel #nawa="ngModel">
+                  <option value="Article" selected>Article</option>
+                  <option value="Image"> Image</option>
+
+              </select>
+              <label for="content">content</label>
+              <div *ngIf="nawa.value==='Article'; else mekench">
+                 <textarea
+                 content="content"
+                  ngModel
+                  name="content"
+                  id="content"
+                  class="form-control"
+                  required
+                  #content="ngModel">
+              </textarea>
+              <div *ngIf="content.touched && content.invalid" >
+                  <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                      content is required</small></div>
+
+              </div>
+
+          <ng-template #mekench>
+            <label for="content2">content</label>
+            <input
+            content="content"
+                  placeholder="place the Image link here"
+                  ngModel
+                  name="content"
+                  id="content2"
+                  class="form-control"
+                  #imgUrl="ngModel"
+                  required>
+
+                  <div *ngIf="imgUrl.touched && imgUrl.invalid" >
+                      <small  class="form-text " style="color: red; font-family: 'Arial Black'">
+                          image link is required</small></div>
+  
+                      
+            <img [src]="imgUrl.value" class="img-fluid">
+          </ng-template>
+
+              <div class="row">
+                      <div class="col-3 offset-4">
+                          <button class="btn btn-success" type="submit" style="margin-top:20px; width: 150px" [disabled]="!f.valid"> Apply Changes</button>
+      
+                      </div>
+                    </div>         
+              </form>
+              <div class="alert alert-success" *ngIf="updated==true">
+                  <strong>Success!</strong> your post was succufully updated.
+                </div>
+      </div>
+  </div>
+</div>

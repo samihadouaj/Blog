@@ -12,6 +12,8 @@ import { NgForm } from '@angular/forms';
 export class SettingsComponent implements OnInit {
   user: UserModel = {name: ' ',  email: ' ', password: ' ', image: '' };
   @ViewChild('f') setting: NgForm;
+  updated = false;
+  updateMsg ;
   constructor(private userService: UserService,
     private tokenManager: TokenManager) { }
   async ngOnInit() {
@@ -25,9 +27,13 @@ export class SettingsComponent implements OnInit {
       });
   }
 
-  saveChanges(value) {
-  this.userService.updateUser(value, this.tokenManager.getDecoded().id).subscribe((res) => {
+   saveChanges(value) {
+  this.userService.updateUser(value, this.tokenManager.getDecoded().id).subscribe(async (res) => {
+    const user = await this.userService.getUser(this.tokenManager.getDecoded().id);
+         localStorage.setItem('currentUser', JSON.stringify(user));
   console.log(res);
+  this.updated = true;
+  this.updateMsg = res;
 });
   }
 

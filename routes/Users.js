@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const {User, validateUser} = require('../models/user');
 const {Post} = require('../models/post');
 const existence = require('../middleware/existence');
-
 router.post('/', existence, async (req, res) => {
     let user = new User({
         name: req.body.name,
@@ -49,7 +48,7 @@ router.put('/dislike',auth, async (req, res) => {
 res.send('true')
 });
 
-router.put('/:id',[auth, existence  ], async (req, res) => {
+router.put('/:id',auth, async (req, res) => {
     const id = req.params.id;
     let password = ' '
     if(req.body.password) {
@@ -60,7 +59,8 @@ else {
     const user = await User.findById({_id: id});
     password = user.password
 
-}
+}   
+        try{
     await User.findByIdAndUpdate({_id: id},
         {$set:{
             name: req.body.name,
@@ -70,6 +70,9 @@ else {
         }}
     );
     res.send(JSON.stringify('you re profile was succefully updated'));
+    } catch (ex) {
+        res.send(JSON.stringify(ex));
+    }
 });
 
 router.delete('/:id',auth, async(req, res) => {

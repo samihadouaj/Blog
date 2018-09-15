@@ -25,6 +25,7 @@ private router: Router
   async ngOnInit() {
      this.postId = this.route.snapshot.params['id'];
     this.post = await this.articleService.getPost(this.postId);
+    console.log(this.post);
    this.owner = await this.userService.getUser(this.post.owner._id);
   }
 

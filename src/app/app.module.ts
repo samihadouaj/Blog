@@ -34,11 +34,13 @@ const routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home' , component: HomeComponent},
   {path: 'about' , component: AboutComponent},
-  {path: 'writeArticle' , component: CreateArticleComponent,canActivate:[AuthGuardService]},
   {path: 'article/:id' , component: ShowPostComponent},
+  {path: 'writeArticle' , component: CreateArticleComponent,canActivate:[AuthGuardService]},
   {path: 'me' , component: UserComponent ,canActivate:[AuthGuardService]},
   {path: 'settings' , component: SettingsComponent ,canActivate:[AuthGuardService]},
   {path: 'updatePost/:postId' , component: UpdatepostComponent ,canActivate:[AuthGuardService]},
+  {path: '' , redirectTo: 'home' , pathMatch: 'full'},
+
  ];
 
 @NgModule({

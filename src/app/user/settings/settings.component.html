@@ -1,13 +1,15 @@
 <div class="container-fluid">
+
+        <div class="row">
+                <div class="col4 offset-4">
+                        <img [src]= "image.value" class="rounded" style="margin-top: 30px; width:300px">
+                        <br><br><br>
+                </div>
+              </div>
+
   <div class="row">
     <div class="col-8 offset-2">
       <form (ngSubmit)="saveChanges(f.value)" #f="ngForm" class="form-group">
-          <div class="row">
-            <div class="col-8 offset-2">
-                    <img [src]= "image.value" class="rounded" style="margin-top: 30px">
-                    <br><br><br>
-            </div>
-          </div>
 
         <label for="name">Name</label>
         <input
@@ -61,10 +63,17 @@
 
         <div class="row">
                 <div class="col-3 offset-4">
-                    <button class="btn btn-success" type="submit" style="margin-top:20px; width: 150px" [disabled]="!f.valid"> save changes</button>
+                    <button class="btn btn-success" type="submit" style="margin-top:20px; width: 150px"> save changes</button>
 
                 </div>
-              </div>            
+              </div>     
+              <div class="alert alert-success" *ngIf="updated==true && !updateMsg.errmsg">
+                <strong>Success!</strong> {{updateMsg}}.
+              </div>     
+              
+              <div class="alert alert-danger" *ngIf="updated==true && updateMsg.errmsg">
+                <strong>Error!</strong> {{updateMsg.errmsg}}.
+              </div>     
 
       </form>
     </div>

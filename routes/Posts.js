@@ -30,7 +30,7 @@ router.post('/',auth, async (req, res) => {
 });
 
 
-router.put('/:postId/:ownerId',[auth, postAdmin], async(req, res) => {
+router.put('/:postId',[auth, postAdmin], async(req, res) => {
         const postId = req.params.postId;
        await Post.findByIdAndUpdate({_id: postId}, 
         {$set: {
@@ -40,7 +40,7 @@ router.put('/:postId/:ownerId',[auth, postAdmin], async(req, res) => {
                 type: req.body.type,
                 
         }});
-        res.send('post updated');   
+        res.send(JSON.stringify('post updated'));   
 } );
 
 

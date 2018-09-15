@@ -38,6 +38,7 @@ export  class UserService {
         }
 
          isItYourPost(postId) {
+                if (! this.authService.isConnected()) {return false; }
           const user = JSON.parse(localStorage.getItem('currentUser'));
           for (const c of user.posts) {
                 if (c == postId) {
