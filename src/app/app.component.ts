@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { UserModel } from './user/user.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  constructor(private authService: AuthService){}
   title = 'Blog';
 ngOnInit() {
 }
